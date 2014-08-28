@@ -4,8 +4,9 @@ import com.cakebandit.threads.StartCountdown;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CakeBandit extends JavaPlugin{
-    
+
     public void onEnable(){
+        GameState.setState(GameState.IN_LOBBY);
         new Thread(new StartCountdown()).start();
     }
     
@@ -15,6 +16,10 @@ public class CakeBandit extends JavaPlugin{
     
     public static void stop(){
         
+    }
+    
+    public static boolean canStart() {
+        return false;
     }
     
 }
