@@ -1,5 +1,7 @@
 package com.cakebandit;
 
-public class CakeBandit {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class CakeBandit extends JavaPlugin{
     
 }
