@@ -10,6 +10,8 @@ public class Game {
     
     private static boolean canStart = false;
     
+    private static boolean hasStarted = false;
+    
     public static List<Player> players = new ArrayList<Player>();
     
     public static Player bandit;
@@ -30,11 +32,15 @@ public class Game {
     }
     
     public static void stop(){
-        
+        hasStarted = false;
     }
     
     public static boolean canStart() {
         return false;
+    }
+    
+    public static boolean hasStarted(){
+        return hasStarted;
     }
     
     public static void setCanStart(boolean b){

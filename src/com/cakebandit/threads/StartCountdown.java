@@ -2,6 +2,7 @@ package com.cakebandit.threads;
 
 import com.cakebandit.CakeBandit;
 import com.cakebandit.GameState;
+import com.cakebandit.handlers.Game;
 import com.cakebandit.utils.ChatUtilities;
 import org.bukkit.Bukkit;
 
@@ -12,15 +13,16 @@ public class StartCountdown implements Runnable {
     public void run() {
         while (true) {
             if (GameState.isState(GameState.IN_LOBBY)) {
-                if (CakeBandit.canStart()) {
+                if (Game.canStart()) {
                     ChatUtilities.broadcast("Minimum players reached! Countdown starting!");
                     timeUntilStart = 60;
                     for (; timeUntilStart >= 0; timeUntilStart--) {
-                        if(!CakeBandit.canStart()){
+                        if(!Game.canStart()){
                             ChatUtilities.broadcast("Not enough players! Countdown stopped!");
+                            break;
                         }
                         if (timeUntilStart == 0) {
-                            CakeBandit.start();
+                            Game.start();
                             break;
                         }
 

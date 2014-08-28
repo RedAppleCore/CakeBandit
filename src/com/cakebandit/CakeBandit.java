@@ -1,6 +1,10 @@
 package com.cakebandit;
 
+import com.cakebandit.listeners.player.AsyncPlayerPreLogin;
+import com.cakebandit.listeners.player.PlayerJoin;
+import com.cakebandit.listeners.player.PlayerQuit;
 import com.cakebandit.threads.StartCountdown;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CakeBandit extends JavaPlugin{
@@ -10,16 +14,11 @@ public class CakeBandit extends JavaPlugin{
         new Thread(new StartCountdown()).start();
     }
     
-    public static void start(){
-        
-    }
-    
-    public static void stop(){
-        
-    }
-    
-    public static boolean canStart() {
-        return false;
+    public void registerListeners(){
+        PluginManager pm = getServer().getPluginManager();
+        pm.registerEvents(new PlayerJoin(this), this);
+        pm.registerEvents(new PlayerQuit(this), this);
+        pm.registerEvents(new AsyncPlayerPreLogin(this), this);
     }
     
 }
